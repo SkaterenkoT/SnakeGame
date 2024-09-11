@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\\source\\repos\\SnakeEngine\\",
+  "WorkspaceRootPath": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\\Desktop\\SnakeGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7C66AB84-BBB0-48E9-936F-1902C0C951F9}|SnakeEngine\\SnakeEngine.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\\source\\repos\\snakeengine\\snakeengine\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7C66AB84-BBB0-48E9-936F-1902C0C951F9}|SnakeEngine\\SnakeEngine.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\\desktop\\snakegame\\snakeengine\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7C66AB84-BBB0-48E9-936F-1902C0C951F9}|SnakeEngine\\SnakeEngine.csproj|solutionrelative:snakeengine\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -32,11 +32,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\\source\\repos\\SnakeEngine\\SnakeEngine\\Class1.cs",
+              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\\Desktop\\SnakeGame\\SnakeEngine\\Class1.cs",
               "RelativeDocumentMoniker": "SnakeEngine\\Class1.cs",
-              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\\source\\repos\\SnakeEngine\\SnakeEngine\\Class1.cs",
+              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\\Desktop\\SnakeGame\\SnakeEngine\\Class1.cs",
               "RelativeToolTip": "SnakeEngine\\Class1.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAiwGwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACABAAAAAAAAAAAiwC0BAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-05T13:01:34.029Z",
               "EditorCaption": ""
