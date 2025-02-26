@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace SnakeEngine
 {
-    public enum ObjectType
-    {
-        Empty,
-        SnakeHead,
-        SnakeBody,
-        Stone,
-        Food,
-    }
-    public enum Direction
+    public enum Direction : byte
     {
         Up,
         Left,

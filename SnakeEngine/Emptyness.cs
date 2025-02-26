@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SnakeEngine
 {
-    public class Stone : MapObject
+    class Emptyness : MapObject
     {
-        public Stone(Point location) : base(location, ObjectType.Stone) { }
+        public Emptyness(Point location) : base(location, ObjectType.Empty) { }
     }
 }

@@ -6,25 +6,14 @@ using System.Threading.Tasks;
 
 namespace SnakeEngine
 {
-    public class MapObject
+    public abstract class MapObject
     {
-        protected int[] Location = new int[2];
-        protected ObjectType type;
-        public MapObject(int x, int y)
+        public Point Location { get; }
+        public ObjectType Type { get; }
+        public MapObject(Point location, ObjectType type)
         {
-            Location = new int[2] { x, y };
-        }
-        public int[] GetLocation()
-        {
-            return Location;
-        }
-        public ObjectType GetObjectType()
-        {
-            return type;
-        }
-        public virtual void SetObjectType(ObjectType type)
-        {
-            this.type = type;
+            Location = location;
+            Type = type;
         }
     }
 }

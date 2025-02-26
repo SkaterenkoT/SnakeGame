@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace SnakeEngine
 {
-    public class Stone : MapObject
+    public enum ObjectType : byte
     {
-        public Stone(Point location) : base(location, ObjectType.Stone) { }
+        Empty,
+        SnakeHead,
+        SnakeBody,
+        SnakeTail,
+        Stone,
+        Food,
     }
 }

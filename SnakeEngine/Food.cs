@@ -8,16 +8,18 @@ namespace SnakeEngine
 {
     public class Food : MapObject
     {
-        public Food(int x, int y) : base(x, y)
+        public Food(Point location) : base(location, ObjectType.Food) { }
+        public virtual void Effect(Snake snake)
         {
-            Location = new int[2] { x, y };
-            type = ObjectType.Food;
-        }
-        public virtual void Effect(LinkedList<SnakeBody> mapObject, int x, int y, ObjectType type)
-        {
-            SnakeBody newPart = new SnakeBody(x, y);
-            newPart.SetObjectType(type);
-            mapObject.AddFirst(newPart);
+            List<Point> snakePartsLocs = snake.GetLocation();
+
+            var newPart = new SnakeBody(new Point(snakePartsLocs[snakePartsLocs.Count - 1].X
+                                                    , snakePartsLocs[snakePartsLocs.Count - 1].Y));
+
+            var (head, body) = (snake.Head, snake.Body);
+            body.AddLast(newPart);
+
+            snake = new Snake(head, body);
         }
     }
 }

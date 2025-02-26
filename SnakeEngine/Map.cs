@@ -8,76 +8,130 @@ namespace SnakeEngine
 {
     public class Map
     {
-        private int width;
-        private int height;
-        private MapObject[][] mapCells;
-        public Map(int _width, int _height)
+        public int Width 
         {
-            height = _height >= 5 ? _height : 8;
-            width = _width >= 5 ? _width : 8;
+            get { return Width; }
+            private set
+            {
+                if (value > 2)
+                    Width = value;
+            }
         }
+        public int Height
+        {
+            get { return Height; }
+            private set
+            {
+                if (value > 2)
+                    Height = value;
+            }
+        }
+        public MapObject[][] mapCells { get; private set; }
+
+        public Map(int width, int height)
+        {
+            Width = width;
+            Height = height;
+        }
+
         public void Render(Snake snake, Food food, List<Stone> stones = null)
         {
-            List<(int x, int y)> snakeLocs = snake.GetLocation();
-            if (mapCells != null)
+            List<Point> snakeLocs = snake.GetLocation();
+
+            if (mapCells == null)
             {
-                for (int i = snakeLocs.Count - 1; i >= 0; i--)
+                InitializeMap();
+                PlaceStones(stones);
+            }
+
+            ClearAroundTail(snakeLocs);
+
+            AddSnake(snakeLocs);
+
+            AddFood(food);
+        }
+
+        private void InitializeMap()
+        {
+            mapCells = new MapObject[Width][];
+            for (int i = 0; i < Width; i++)
+            {
+                mapCells[i] = new MapObject[Height];
+                for (int j = 0; j < Height; j++)
+                    mapCells[i][j] = new Emptyness(new Point(i, j));
+            }
+        }
+
+        private void PlaceStones(List<Stone> stones)
+        {
+            if (stones != null)
+            {
+                foreach (Stone stone in stones)
                 {
-                    if (i == snakeLocs.Count - 1)
-                    {
-                        if (snakeLocs[i].x > 0)
-                        {
-                            if (mapCells[snakeLocs[i].x - 1][snakeLocs[i].y].GetObjectType() != ObjectType.Stone)
-                                mapCells[snakeLocs[i].x - 1][snakeLocs[i].y].SetObjectType(ObjectType.Empty);
-                        }
-                        if (snakeLocs[i].x < width)
-                        {
-                            if (mapCells[snakeLocs[i].x + 1][snakeLocs[i].y].GetObjectType() != ObjectType.Stone)
-                                mapCells[snakeLocs[i].x + 1][snakeLocs[i].y].SetObjectType(ObjectType.Empty);
-                        }
-                        if (snakeLocs[i].y > 0)
-                        {
-                            if (mapCells[snakeLocs[i].x][snakeLocs[i].y - 1].GetObjectType() != ObjectType.Stone)
-                                mapCells[snakeLocs[i].x][snakeLocs[i].y - 1].SetObjectType(ObjectType.Empty);
-                        }
-                        if (snakeLocs[i].y < height)
-                        {
-                            if (mapCells[snakeLocs[i].x][snakeLocs[i].y + 1].GetObjectType() != ObjectType.Stone)
-                                mapCells[snakeLocs[i].x][snakeLocs[i].y + 1].SetObjectType(ObjectType.Empty);
-                        }
-                    }
-                    mapCells[snakeLocs[i].x][snakeLocs[i].y].SetObjectType(ObjectType.SnakeBody);
-                    if (i == 0)
-                        mapCells[snakeLocs[i].x][snakeLocs[i].y].SetObjectType(ObjectType.SnakeHead);
+                    Point loc = stone.Location;
+                    mapCells[loc.X][loc.Y] = new Stone(new Point(loc.X,loc.Y));
                 }
-                mapCells[food.GetLocation()[0]][food.GetLocation()[1]].SetObjectType(ObjectType.Food);
             }
-            else
+        }
+
+        private void ClearAroundTail(List<Point> snakeLocs)
+        {
+            Point tail = snakeLocs[snakeLocs.Count - 1];
+            Point bodyPartBeforeTail = null;
+
+            if (snakeLocs.Count > 1)
+                bodyPartBeforeTail = snakeLocs[snakeLocs.Count - 2];
+
+
+            ClearCellIfNotSnakeBody(tail.X - 1, tail.Y, bodyPartBeforeTail);
+            ClearCellIfNotSnakeBody(tail.X + 1, tail.Y, bodyPartBeforeTail);
+            ClearCellIfNotSnakeBody(tail.X, tail.Y - 1, bodyPartBeforeTail);
+            ClearCellIfNotSnakeBody(tail.X, tail.Y + 1, bodyPartBeforeTail);
+        }
+
+        private void ClearCellIfNotSnakeBody(int x, int y, Point bodyPartBeforeTail)
+        {
+            var cell = mapCells[x][y];
+
+            if ((x >= 0) 
+                || (x < Width) 
+                || (y >= 0) 
+                || (y < Height))
             {
-                mapCells = new MapObject[width][];
-                for (int i = 0; i < width; i++)
-                    for (int j = 0; j < height; j++)
-                    {
-                        mapCells[i][j] = new MapObject(i, j);
-                        mapCells[i][j].SetObjectType(ObjectType.Empty);
-                    }
-                if (stones != null)
-                    foreach (Stone stone in stones)
-                        mapCells[stone.GetLocation()[0]][stone.GetLocation()[1]].SetObjectType(ObjectType.Stone);
-                for (int i = 0; i < snakeLocs.Count; i++)
-                    if (i == 0)
-                        mapCells[snakeLocs[i].x][snakeLocs[i].y].SetObjectType(ObjectType.SnakeHead);
-                    else
-                        mapCells[snakeLocs[i].x][snakeLocs[i].y].SetObjectType(ObjectType.SnakeBody);
+                if ((cell.Type != ObjectType.Stone)
+                    && (cell.Location != bodyPartBeforeTail))
+                {
+                    mapCells[x][y] = new Emptyness(new Point(x, y));
+                }
             }
         }
-        public int GetWidth()
+
+        private void AddSnake(List<Point> snakeLocs)
         {
-            return width;
+            for (int i = 0; i < snakeLocs.Count; i++)
+            {
+                Point loc = snakeLocs[i];
+                if (i == 0)
+                {
+                    if ((loc.X <= Width)
+                        || (loc.Y <= Height)
+                        || (loc.X >= 0)
+                        || (loc.Y >= 0))
+                        mapCells[loc.X][loc.Y] = new SnakeHead(new Point(loc.X, loc.Y));
+                    else
+                        return;
+                }
+                else
+                {
+                    mapCells[loc.X][loc.Y] = new SnakeBody(new Point(loc.X, loc.Y));
+                }
+            }
         }
-        public int GetHeight()
+
+        private void AddFood(Food food)
         {
-            return height;
+            Point foodLoc = food.Location;
+            mapCells[foodLoc.X][foodLoc.Y] = new Food(new Point(foodLoc.X, foodLoc.Y));
         }
     }
 }
