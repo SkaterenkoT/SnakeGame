@@ -72,16 +72,17 @@ namespace SnakeEngine
 
         private bool BorderBlocksTheRoad(Point headLocation)
         {
+            if (GameSettings.BorderMirroring)
+                return false;
+
             if ((headLocation.X < 0)
                || (headLocation.Y < 0)
                || (headLocation.X > GameSettings.Width)
                || (headLocation.Y > GameSettings.Height))
             {
-                if (GameSettings.BorderMirroring)
-                    return false;
-                else
                     return true;
             }
+
             return false;
         }
 

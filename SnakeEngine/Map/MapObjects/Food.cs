@@ -9,6 +9,7 @@ namespace SnakeEngine
     public class Food : MapObject
     {
         public Food(Point location) : base(location, ObjectType.Food) { }
+
         public virtual void Effect(Snake snake, List<Point> emptyCells)
         {
             snake.AddTail(this.Location);
@@ -19,5 +20,6 @@ namespace SnakeEngine
 
             this.Location = newFoodLocation;
         }
+
     }
 }

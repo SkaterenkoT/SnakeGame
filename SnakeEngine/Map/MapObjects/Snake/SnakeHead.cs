@@ -9,5 +9,6 @@ namespace SnakeEngine
     public class SnakeHead : MapObject
     {
         public SnakeHead(Point location) : base(location, ObjectType.SnakeHead) { }
+
     }
 }

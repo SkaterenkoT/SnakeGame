@@ -9,5 +9,6 @@ namespace SnakeEngine
     public class Stone : MapObject
     {
         public Stone(Point location) : base(location, ObjectType.Stone) { }
+
     }
 }

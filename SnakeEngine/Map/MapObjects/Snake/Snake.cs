@@ -29,19 +29,9 @@ namespace SnakeEngine
 
         public void Move(Direction direction, GameSettings gameSettings)
         {
-            Point oldHeadLocation = Head.Location;
-            Point possibleNewLocation = oldHeadLocation.GetNeighbor(direction);
+            var oldHeadLocation = Head.Location;
 
-
-            if (gameSettings.BorderMirroring
-                && (possibleNewLocation.X < 0
-                    || possibleNewLocation.X > gameSettings.Width
-                    || possibleNewLocation.Y < 0
-                    || possibleNewLocation.Y > gameSettings.Height))
-                Head = new SnakeHead(MirrorLocation(direction, gameSettings));
-            else
-                Head = new SnakeHead(oldHeadLocation.GetNeighbor(direction));
-
+            Head = new SnakeHead(GetNewHeadLocation(direction, gameSettings));
 
             if (Body.Any())
             {
@@ -53,21 +43,36 @@ namespace SnakeEngine
             }
         }
 
-        private Point MirrorLocation(Direction direction, GameSettings gameSettings)
+        private Point GetNewHeadLocation(Direction direction, GameSettings gameSettings)
         {
-            switch (direction)
+            Point possibleNewLocation = Head.Location.GetNeighbor(direction);
+
+            if (possibleNewLocation.X < 0
+            || possibleNewLocation.X > gameSettings.Width
+            || possibleNewLocation.Y < 0
+            || possibleNewLocation.Y > gameSettings.Height)
             {
-                case Direction.Up:
-                    return new Point(Head.Location.X, gameSettings.Height - 1);
-                case Direction.Down:
-                    return new Point(Head.Location.X, 0);
-                case Direction.Right:
-                    return new Point(0, Head.Location.Y);
-                case Direction.Left:
-                    return new Point(gameSettings.Width - 1, Head.Location.Y);
-                default:
-                    return null;
+                if (gameSettings.BorderMirroring)
+                {
+                    switch (direction)
+                    {
+                        case Direction.Up:
+                            return new Point(Head.Location.X, gameSettings.Height - 1);
+                        case Direction.Down:
+                            return new Point(Head.Location.X, 0);
+                        case Direction.Right:
+                            return new Point(0, Head.Location.Y);
+                        case Direction.Left:
+                            return new Point(gameSettings.Width - 1, Head.Location.Y);
+                        default:
+                            return null;
+                    }
+                }
+                else
+                    return Head.Location;
             }
+            else
+                return possibleNewLocation;
         }
 
     }
