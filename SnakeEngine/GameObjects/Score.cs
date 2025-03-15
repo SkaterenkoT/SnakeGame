@@ -8,14 +8,16 @@ namespace SnakeEngine
 {
     public class Score
     {
-        public int count { get; private set; }
+        public int Count { get; private set; }
+
         public void ClearScore()
         {
-            count = 0;
+            Count = 0;
         }
+
         public void AddToScore(int number)
         {
-            count += number;
+            Count += number;
         }
     }
 }

@@ -8,8 +8,9 @@ namespace SnakeEngine
 {
     public abstract class MapObject
     {
-        public Point Location { get; }
+        public Point Location { get; protected set; }
         public ObjectType Type { get; }
+
         public MapObject(Point location, ObjectType type)
         {
             Location = location;

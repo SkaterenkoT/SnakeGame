@@ -13,11 +13,13 @@ namespace SnakeEngine
             X = x;
             Y = y;
         }
+
         public int X { get; }
         public int Y { get; }
-        public Point GetNeighbor(Direction dir)
+
+        public Point GetNeighbor(Direction direction)
         {
-            switch (dir)
+            switch (direction)
             {
                 case Direction.Down:
                     return new Point(X, Y + 1);

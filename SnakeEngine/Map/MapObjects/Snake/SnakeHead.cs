@@ -10,8 +10,4 @@ namespace SnakeEngine
     {
         public SnakeHead(Point location) : base(location, ObjectType.SnakeHead) { }
     }
-    public class SnakeBody : MapObject
-    {
-        public SnakeBody(Point location) : base(location, ObjectType.SnakeBody) { }
-    }
 }
