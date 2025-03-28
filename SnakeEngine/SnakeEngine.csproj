@@ -41,20 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Map\MapObjects\Emptyness.cs" />
     <Compile Include="Map\MapObjects\MapObject.cs" />
-    <Compile Include="Enums\ObjectType.cs" />
+    <Compile Include="Map\MapObjects\ObjectType.cs" />
     <Compile Include="Map\Point.cs" />
-    <Compile Include="Map\MapObjects\Snake\SnakeBody.cs" />
+    <Compile Include="Map\MapObjects\Snake\SnakeTail.cs" />
     <Compile Include="Map\MapObjects\Snake\SnakeHead.cs" />
     <Compile Include="Map\MapObjects\Food.cs" />
     <Compile Include="Map\MapObjects\Stone.cs" />
     <Compile Include="Map\MapObjects\Snake\Snake.cs" />
     <Compile Include="Map\Map.cs" />
-    <Compile Include="GameObjects\GameSettings.cs" />
-    <Compile Include="GameObjects\Score.cs" />
-    <Compile Include="GameObjects\GamePlatform.cs" />
+    <Compile Include="GameSettings.cs" />
+    <Compile Include="Score.cs" />
+    <Compile Include="GamePlatform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -33,7 +33,7 @@ namespace SnakeEngine
 
             MapCells[snake.Head.Location.X][snake.Head.Location.Y] = new SnakeHead(snake.Head.Location);
 
-            foreach (SnakeTail tail in snake.Body)
+            foreach (var tail in snake.Body)
                 MapCells[tail.Location.X][tail.Location.Y] = new SnakeTail(tail.Location);
 
             MapCells[food.Location.X][food.Location.Y] = new Food(food.Location);
@@ -77,10 +77,10 @@ namespace SnakeEngine
         private void InitializeMap(List<Stone> stones)
         {
             MapCells = new MapObject[Width][];
-            for (int i = 0; i < Width; i++)
+            for (var i = 0; i < Width; i++)
             {
                 MapCells[i] = new MapObject[Height];
-                for (int j = 0; j < Height; j++)
+                for (var j = 0; j < Height; j++)
                     MapCells[i][j] = new Emptyness(new Point(i, j));
             }
             PlaceStones(stones);
@@ -90,13 +90,12 @@ namespace SnakeEngine
         {
             if (stones != null)
             {
-                foreach (Stone stone in stones)
+                foreach (var stone in stones)
                 {
                     Point loc = stone.Location;
                     MapCells[loc.X][loc.Y] = new Stone(new Point(loc.X,loc.Y));
                 }
             }
         }
-
     }
 }

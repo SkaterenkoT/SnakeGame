@@ -45,12 +45,12 @@ namespace SnakeEngine
 
         private Point GetNewHeadLocation(Direction direction, GameSettings gameSettings)
         {
-            Point possibleNewLocation = Head.Location.GetNeighbor(direction);
+            var possibleNewLocation = Head.Location.GetNeighbor(direction);
 
             if (possibleNewLocation.X < 0
-            || possibleNewLocation.X > gameSettings.Width
-            || possibleNewLocation.Y < 0
-            || possibleNewLocation.Y > gameSettings.Height)
+                || possibleNewLocation.X > gameSettings.Width
+                || possibleNewLocation.Y < 0
+                || possibleNewLocation.Y > gameSettings.Height)
             {
                 if (gameSettings.BorderMirroring)
                 {
@@ -74,6 +74,5 @@ namespace SnakeEngine
             else
                 return possibleNewLocation;
         }
-
     }
 }

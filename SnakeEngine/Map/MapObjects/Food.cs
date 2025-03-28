@@ -14,12 +14,11 @@ namespace SnakeEngine
         {
             snake.AddTail(this.Location);
 
-            Random random = new Random();
-            int cellPeek = random.Next(0, emptyCells.Count - 1);
-            Point newFoodLocation = emptyCells[cellPeek];
+            var random = new Random();
+            var cellPeek = random.Next(0, emptyCells.Count - 1);
+            var newFoodLocation = emptyCells[cellPeek];
 
             this.Location = newFoodLocation;
         }
-
     }
 }

@@ -36,7 +36,7 @@ namespace SnakeEngine
 
             Snake.Move(direction, GameSettings);
 
-            if (Snake.Head.Location == Food.Location)    
+            if (Snake.Head.Location == Food.Location)
             {
                 Food.Effect(Snake, Map.GetEmptyCells());
                 Score.AddToScore(1);
@@ -49,12 +49,12 @@ namespace SnakeEngine
 
         private bool GameOver(Direction direction)
         {
-            Point newHeadLocation = Snake.Head.Location.GetNeighbor(direction);
+            var newHeadLocation = Snake.Head.Location.GetNeighbor(direction);
 
             if (BorderBlocksTheRoad(newHeadLocation))
             {
                 Score.ClearScore();
-                return true; 
+                return true;
             }
 
             var lastTailPiece = Snake.Body.Last.Value;
@@ -64,7 +64,7 @@ namespace SnakeEngine
                     && newHeadLocation != lastTailPiece.Location))
             {
                 Score.ClearScore();
-                return true; 
+                return true;
             }
 
             return false;
@@ -80,7 +80,7 @@ namespace SnakeEngine
                || (headLocation.X > GameSettings.Width)
                || (headLocation.Y > GameSettings.Height))
             {
-                    return true;
+                return true;
             }
 
             return false;

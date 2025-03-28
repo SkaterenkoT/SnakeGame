@@ -33,6 +33,5 @@ namespace SnakeEngine
                     return new Point(X, Y);
             }
         }
-
     }
 }
