@@ -41,17 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapObject.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="SnakeParts.cs" />
-    <Compile Include="Food.cs" />
-    <Compile Include="Stone.cs" />
-    <Compile Include="Snake.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="Map\MapObjects\Emptyness.cs" />
+    <Compile Include="Map\MapObjects\MapObject.cs" />
+    <Compile Include="Map\MapObjects\ObjectType.cs" />
+    <Compile Include="Map\Point.cs" />
+    <Compile Include="Map\MapObjects\Snake\SnakeTail.cs" />
+    <Compile Include="Map\MapObjects\Snake\SnakeHead.cs" />
+    <Compile Include="Map\MapObjects\Food.cs" />
+    <Compile Include="Map\MapObjects\Stone.cs" />
+    <Compile Include="Map\MapObjects\Snake\Snake.cs" />
+    <Compile Include="Map\Map.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="GamePlatform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

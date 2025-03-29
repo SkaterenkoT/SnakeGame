@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace SnakeEngine
 {
-    public class GameSettings
+    public struct GameSettings
     {
-        public bool bordermirroring;
-        public int stonesCount;
-        public int width;
-        public int height;
-        public int speed;
-        public GameSettings(bool _borderMirroring, int _stonesCount, int _width, int _height, int _speed)
+        public bool BorderMirroring { get; }
+        public int StonesCount { get; }
+        public int Width { get; }
+        public int Height { get; }
+        public int Speed { get; }
+
+        public GameSettings(bool borderMirroring, int stonesCount, int width, int height, int speed)
         {
-            bordermirroring = _borderMirroring;
-            stonesCount = _stonesCount;
-            width = _width;
-            height = _height;
-            speed = _speed;
+            BorderMirroring = borderMirroring;
+            StonesCount = stonesCount;
+            Width = width;
+            Height = height;
+            Speed = speed;
         }
     }
 }
